@@ -1,6 +1,7 @@
 import React from 'react'
-import {Switch, Route} from 'react-router-dom'
+import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import NavBar from './components/NavBar'
+import Home from './components/Home'
 import './App.css'
 
 
@@ -10,10 +11,12 @@ function App() {
       <NavBar/>
       <div className="App">
         <header className="App-header">
-          <Switch>
-            <Route path='/' component={About} exact />
-            <Route component={Error} />
-          </Switch>
+          <BrowserRouter>
+            <Routes>
+              <Route path='/' component={Home} exact />
+              <Route component={Error} />
+            </Routes>
+          </BrowserRouter>
         </header>
       </div>
     </div>
