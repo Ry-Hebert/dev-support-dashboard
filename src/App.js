@@ -1,23 +1,21 @@
 import React from 'react'
-import {BrowserRouter, Routes, Route} from 'react-router-dom'
+import { Routes, Route} from 'react-router-dom'
 import NavBar from './components/NavBar'
 import Home from './components/Home'
+import Error from './components/Error'
 import './App.css'
+import './assets/css/dev-support.scss'
 
 
 function App() {
   return (
-    <div>
+    <div className='devHelpTool'>
       <NavBar/>
-      <div className="App">
-        <header className="App-header">
-          <BrowserRouter>
-            <Routes>
-              <Route path='/' component={Home} exact />
-              <Route component={Error} />
-            </Routes>
-          </BrowserRouter>
-        </header>
+      <div className="App mainBody">
+        <Routes>
+          <Route path='/Home' element={<Home />} exact />
+          <Route path='*' element={<Error />} />
+        </Routes>
       </div>
     </div>
   )

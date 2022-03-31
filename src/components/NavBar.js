@@ -11,6 +11,7 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
+import { Link } from 'react-router-dom';
 
 const pages = ['Home', 'About'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
@@ -78,7 +79,11 @@ const ResponsiveAppBar = () => {
             >
               {pages.map((page) => (
                 <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+                  <Typography textAlign="center">
+                      <Link to={`/${page}`} style={{textDecoration: 'none', color: 'inherit'}}>
+                        {page}
+                      </Link>
+                  </Typography>
                 </MenuItem>
               ))}
             </Menu>
@@ -98,7 +103,9 @@ const ResponsiveAppBar = () => {
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
-                {page}
+                <Link to={`/${page}`} style={{textDecoration: 'none', color: 'inherit'}}>
+                  {page}
+                </Link>
               </Button>
             ))}
           </Box>

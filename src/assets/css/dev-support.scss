@@ -1,0 +1,29 @@
+#root{
+
+}
+
+.mainBody{
+    display: flex;
+    justify-content: center;
+
+}
+
+.mainBodyContent{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin: 2rem 0rem;
+}
+
+.devHelpForm{
+    width: 100%;
+    .formItem{
+        margin: 1rem 0rem;
+        label{
+            top: auto;
+        }
+        div{
+            width: 100%;
+        }
+    }
+}
