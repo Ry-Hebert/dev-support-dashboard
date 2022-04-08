@@ -1,10 +1,11 @@
 import React from 'react'
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
-import FormHelperText from '@mui/material/FormHelperText';
+// import FormHelperText from '@mui/material/FormHelperText';
 import FormControl from '@mui/material/FormControl';
 import TextField from '@mui/material/TextField';
 import Select from '@mui/material/Select';
+import Button from '@mui/material/Button';
 
 
 let HelpTool = () => {
@@ -14,6 +15,8 @@ let HelpTool = () => {
     const handleChange = (event) => {
         setProblemForm(event.target.value)
     }
+
+    
 
     return(
         <div className='helpToolDiv'>
@@ -44,7 +47,13 @@ let HelpTool = () => {
                     <div className='formItem'>
                         <TextField id="outlined-basic" label="Wallet Address" variant="outlined" />
                     </div>
+                    <div className='formItem submitButton'>
+                        <Button variant="contained">Make the Magic</Button>
+                    </div>
                 </FormControl>
+            </div>
+            <div>
+
             </div>
         </div>
     )
