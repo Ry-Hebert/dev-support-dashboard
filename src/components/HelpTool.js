@@ -15,7 +15,7 @@ let HelpTool = () => {
     const handleChange = (event) => {
         setProblemForm(event.target.value)
     }
-
+    
     
 
     return(
@@ -52,6 +52,7 @@ let HelpTool = () => {
                     </div>
                 </FormControl>
             </div>
+            {problemForm.submited === true ?
             <div>
                 <section className='resSection'>
                     {problemForm.queryValue === 0 ? 
@@ -76,10 +77,13 @@ let HelpTool = () => {
                         <div></div> :
                     problemForm.queryValue === 4 ?
                         <div></div> :
+                    problemForm.queryValue === undefined ?
+                        <div></div> :
                     <div><h2>Request Error</h2></div>
                     }
                 </section>
             </div>
+            : null}
         </div>
     )
 }
