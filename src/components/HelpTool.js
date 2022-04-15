@@ -53,7 +53,32 @@ let HelpTool = () => {
                 </FormControl>
             </div>
             <div>
-
+                <section className='resSection'>
+                    {problemForm.queryValue === 0 ? 
+                        <div>
+                            <h2>NFT History</h2>
+                            <table>
+                                <tr>
+                                    <td>Address</td>
+                                    <td>Date</td>
+                                    <td>Time</td>
+                                    <td>Type</td>
+                                    <td>Escrow Address</td>
+                                    <td>Escrow Status</td>
+                                </tr>
+                            </table>
+                        </div> :
+                    problemForm.queryValue === 1 ?
+                        <div></div> :
+                    problemForm.queryValue === 2 ?
+                        <div></div> :
+                    problemForm.queryValue === 3 ?
+                        <div></div> :
+                    problemForm.queryValue === 4 ?
+                        <div></div> :
+                    <div><h2>Request Error</h2></div>
+                    }
+                </section>
             </div>
         </div>
     )
