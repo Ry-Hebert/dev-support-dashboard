@@ -6,6 +6,7 @@ import FormControl from '@mui/material/FormControl';
 import TextField from '@mui/material/TextField';
 import Select from '@mui/material/Select';
 import Button from '@mui/material/Button';
+import { useQueryContext } from '../contexts/queryContext'
 
 
 let HelpTool = () => {
@@ -16,7 +17,7 @@ let HelpTool = () => {
         setProblemForm(event.target.value)
     }
     
-    
+    const queryCtx = useQueryContext()
 
     return(
         <div className='helpToolDiv'>
@@ -48,7 +49,7 @@ let HelpTool = () => {
                         <TextField id="outlined-basic" label="Wallet Address" variant="outlined" />
                     </div>
                     <div className='formItem submitButton'>
-                        <Button variant="contained">Make the Magic</Button>
+                        <Button variant="contained" onClick={queryCtx.setQuery()}>Make the Magic</Button>
                     </div>
                 </FormControl>
             </div>
@@ -66,6 +67,9 @@ let HelpTool = () => {
                                     <td>Type</td>
                                     <td>Escrow Address</td>
                                     <td>Escrow Status</td>
+                                </tr>
+                                <tr>
+
                                 </tr>
                             </table>
                         </div> :
