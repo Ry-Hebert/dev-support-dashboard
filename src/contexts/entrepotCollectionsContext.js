@@ -8,7 +8,7 @@ import React, {
 const apiURI = 'https://us-central1-entrepot-api.cloudfunctions.net/api/collections'
 
 const EntrepotCollectionsContext = createContext({
-    entrepotCollection: [],
+    entrepotCollections: [],
 })
 
 export const EntrepotCollectionsContextProvider = (props) =>{
@@ -20,8 +20,8 @@ export const EntrepotCollectionsContextProvider = (props) =>{
             try {
                 const apiRes = await fetch(apiURI)
 
-                const resData = await apiRes.data
-
+                const resData = await apiRes.json()
+                
                 setEntrepotCollections(resData)
 
             } catch(error){ console.log(error)}
@@ -37,4 +37,4 @@ export const EntrepotCollectionsContextProvider = (props) =>{
     )
 }
 
-export const useQueryContext = () => useContext(EntrepotCollectionsContext)
+export const useEntrepotCollectionsContext = () => useContext(EntrepotCollectionsContext)
