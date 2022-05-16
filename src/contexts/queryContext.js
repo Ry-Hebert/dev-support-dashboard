@@ -30,7 +30,18 @@ export const QueryContextProvider = (props) =>{
     const [principalID, setPrincipalID] = useState('')
     const [walletAddress, setWalletAddress] = useState('')
 
-    const queryHandler = () =>{setQuery(query)}
+    const queryHandler = async (q) =>{
+        let agent = new HttpAgent();
+        
+        const actor = Actor.createActor({
+            agent,
+            canisterId: q.cID,
+        });
+        
+        let registry = await actor.callSomeFunctionOnCanister()
+
+        setQuery(1)
+    }
     const qResHandler = () =>{setQRes(qRes)}
     const qTypeHandler = () =>{setQType(qType)}
     const nftMintNumHandler = () =>{setNftMintNum(nftMintNum)}

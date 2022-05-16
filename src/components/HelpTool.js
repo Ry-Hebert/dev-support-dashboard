@@ -12,6 +12,9 @@ import { useEntrepotCollectionsContext } from '../contexts/entrepotCollectionsCo
 let HelpTool = () => {
 
     const [problemForm, setProblemForm] = React.useState({problem: '', collection: ''})
+    
+    const queryCtx = useQueryContext()
+    const entrepotCtx = useEntrepotCollectionsContext()
 
     const handleChange = (event) => {
 
@@ -22,12 +25,14 @@ let HelpTool = () => {
             setProblemForm({...problemForm, collection: event.target.value})
         }
 
-        console.log(problemForm)
+        if(event.target.name === 'submitQ'){
+            console.log(queryCtx)
+        }
+
+        // console.log(queryCtx)
+        // console.log(problemForm)
         console.log(entrepotCtx)
     }
-    
-    const queryCtx = useQueryContext()
-    const entrepotCtx = useEntrepotCollectionsContext()
 
     return(
         <div className='helpToolDiv'>
@@ -75,14 +80,14 @@ let HelpTool = () => {
                         <TextField id="outlined-basic" label="Wallet Address" variant="outlined" />
                     </div>
                     <div className='formItem submitButton'>
-                        <Button variant="contained" onClick={queryCtx.setQuery()}>Make the Magic</Button>
+                        <Button name='submitQ' variant="contained" onClick={handleChange}>Make the Magic</Button>
                     </div>
                 </FormControl>
             </div>
-            {problemForm.submited === true ?
+            {queryCtx.qRes === true ?
             <div>
                 <section className='resSection'>
-                    {problemForm.queryValue === 0 ? 
+                    {problemForm.problem === 0 ? 
                         <div>
                             <h2>NFT History</h2>
                             <table>
@@ -99,15 +104,15 @@ let HelpTool = () => {
                                 </tr>
                             </table>
                         </div> :
-                    problemForm.queryValue === 1 ?
+                    problemForm.problem === 1 ?
                         <div></div> :
-                    problemForm.queryValue === 2 ?
+                    problemForm.problem === 2 ?
                         <div></div> :
-                    problemForm.queryValue === 3 ?
+                    problemForm.problem === 3 ?
                         <div></div> :
-                    problemForm.queryValue === 4 ?
+                    problemForm.problem === 4 ?
                         <div></div> :
-                    problemForm.queryValue === undefined ?
+                    problemForm.problem === undefined ?
                         <div></div> :
                     <div><h2>Request Error</h2></div>
                     }
