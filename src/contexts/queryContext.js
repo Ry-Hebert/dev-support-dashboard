@@ -38,7 +38,9 @@ export const QueryContextProvider = (props) =>{
             canisterId: q.cID,
         });
         
-        let registry = await actor.callSomeFunctionOnCanister()
+        let canisterCallRes = await actor.details(principalID)
+
+        setQRes(canisterCallRes)
 
         setQuery(1)
     }

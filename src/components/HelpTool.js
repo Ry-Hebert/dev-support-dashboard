@@ -27,6 +27,12 @@ let HelpTool = () => {
 
         if(event.target.name === 'submitQ'){
             console.log(queryCtx)
+
+            const queryParams = {cID: problemForm.collection}
+
+            queryCtx.setQuery(queryParams)
+
+            console.log(queryCtx.qRes)
         }
 
         // console.log(queryCtx)
