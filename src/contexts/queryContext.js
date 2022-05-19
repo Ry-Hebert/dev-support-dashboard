@@ -38,9 +38,11 @@ export const QueryContextProvider = (props) =>{
             canisterId: q.cID,
         });
         
-        let canisterCallRes = await actor.details(principalID)
+        let canisterCallRes = await actor.details(principalID).then((res) =>{
+            setQRes(canisterCallRes)
+        })
 
-        setQRes(canisterCallRes)
+        // setQRes(canisterCallRes)
 
         setQuery(1)
     }
