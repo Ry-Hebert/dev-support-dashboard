@@ -16,6 +16,7 @@ function App() {
           <div className="App mainBody">
             <Routes>
               <Route path='/Home' element={<Home />} exact />
+              <Route path='/' element={<Home />} exact />
               <Route path='*' element={<Error />} />
             </Routes>
           </div>
