@@ -3,7 +3,6 @@ import React, {
     useContext,
     createContext,
 } from 'react'
-import axios from 'axios'
 
 const QueryContext = createContext({
     query: 0,
@@ -31,18 +30,11 @@ export const QueryContextProvider = (props) =>{
 
     const queryHandler = async (q) =>{
 
-        const canReq = await axios(`https://limitless-shore-90887.herokuapp.com/call/bkvll-jiaaa-aaaah-qcqnq-cai/transaction`, {
-            method:'GET',
-            mode: 'no-cors',
-            headers: {
-                'Access-Control-Allow-Origin': '*',
-                'Content-Type': 'application/json',
-            },
-            withCredentials: true,
-            credentials: 'same-origin',
+        const canReq = await fetch("https://limitless-shore-90887.herokuapp.com/call/bkvll-jiaaa-aaaah-qcqnq-cai/transactions", {
+            "method": "GET"
         })
         
-        qResHandler(canReq.data)
+        qResHandler(canReq)
 
         setQuery(1)
     }
