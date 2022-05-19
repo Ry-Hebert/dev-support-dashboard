@@ -3,11 +3,9 @@ import React, {
     useContext,
     createContext,
 } from 'react'
-import { Actor, HttpAgent } from "@dfinity/agent";
-
 
 const QueryContext = createContext({
-    query: '',
+    query: 0,
     qRes: '',
     qType: 0,
     nftMintNum: '',
@@ -23,7 +21,7 @@ const QueryContext = createContext({
 
 export const QueryContextProvider = (props) =>{
     
-    const [query, setQuery] = useState('')
+    const [query, setQuery] = useState(0)
     const [qRes, setQRes] = useState('')
     const [qType, setQType] = useState(0)
     const [nftMintNum, setNftMintNum] = useState('')
@@ -31,22 +29,14 @@ export const QueryContextProvider = (props) =>{
     const [walletAddress, setWalletAddress] = useState('')
 
     const queryHandler = async (q) =>{
-        let agent = new HttpAgent();
-        
-        const actor = Actor.createActor({
-            agent,
-            canisterId: q.cID,
-        });
-        
-        let canisterCallRes = await actor.details(principalID).then((res) =>{
-            setQRes(canisterCallRes)
-        })
 
-        // setQRes(canisterCallRes)
+        const canReq = await fetch(`https://limitless-shore-90887.herokuapp.com/call/bkvll-jiaaa-aaaah-qcqnq-cai/transaction`)
+        
+        qResHandler(canReq)
 
         setQuery(1)
     }
-    const qResHandler = () =>{setQRes(qRes)}
+    const qResHandler = (qRes) =>{setQRes(qRes)}
     const qTypeHandler = () =>{setQType(qType)}
     const nftMintNumHandler = () =>{setNftMintNum(nftMintNum)}
     const principalIDHandler = () =>{setPrincipalID(principalID)}
