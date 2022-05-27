@@ -28,6 +28,31 @@
     }
 }
 
+.helpToolDiv{
+    display: grid;
+    justify-items: center;
+    > div{
+        margin: 0rem 0rem 3rem;
+    }
+}
+
+.tableDisplay{
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+      }
+      
+      td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+      }
+      
+      tr:nth-child(even) {
+        background-color: #dddddd;
+      }
+}
 
 @media only screen and (min-width:34rem) 
 {

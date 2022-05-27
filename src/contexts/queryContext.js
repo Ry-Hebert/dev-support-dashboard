@@ -3,7 +3,6 @@ import React, {
     useContext,
     createContext,
 } from 'react'
-import fetchNoCors from 'fetch-no-cors'
 
 const QueryContext = createContext({
     query: 0,
@@ -30,17 +29,32 @@ export const QueryContextProvider = (props) =>{
     const [walletAddress, setWalletAddress] = useState('')
 
     const queryHandler = async (q) =>{
-        const apiURI = `https://limitless-shore-90887.herokuapp.com/call/${q.cID}/transactions`
+        const apiURI = `https://git.heroku.com/no-cors-server.git/call/${q.cID}/transactions`
+        let fetchedData = ''
 
-        await fetchNoCors(apiURI).then( async (response) => {
+        await fetch(apiURI, {
+            'method': 'GET',
+            'headers': {'Target-URL': "https://limitless-shore-90887.herokuapp.com"}
+        }).then( async (response) => {
             const waitRes = await response.json()
             console.log(waitRes)
-            qResHandler(waitRes)
-          })
-          .catch(err => {
+            fetchedData = waitRes
+        })
+        .catch(err => {
             console.error(err);
-          });
+        });
+
+        switch (principalID) {
+            case !'':
+                fetchedData.filter( item => item.token === principalID)
+                qResHandler(fetchedData)
+                break;
         
+            default:
+                qResHandler(fetchedData)
+                break;
+        }
+          
         setQuery(1)
     }
     const qResHandler = (qRes) =>{setQRes(qRes)}

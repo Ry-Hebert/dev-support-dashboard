@@ -11,7 +11,7 @@ import { useEntrepotCollectionsContext } from '../contexts/entrepotCollectionsCo
 
 let HelpTool = () => {
 
-    const [problemForm, setProblemForm] = React.useState({problem: '', collection: ''})
+    const [problemForm, setProblemForm] = React.useState({problem: '', collection: '', mintNum: '', principalID: '', walletAddress: ''})
     
     const queryCtx = useQueryContext()
     const entrepotCtx = useEntrepotCollectionsContext()
@@ -24,12 +24,23 @@ let HelpTool = () => {
         if(event.target.name === 'collection'){
             setProblemForm({...problemForm, collection: event.target.value})
         }
+        if(event.target.name === 'mintNum'){
+            setProblemForm({...problemForm, mintNum: event.target.value})
+        }
+        if(event.target.name === 'principalID'){
+            setProblemForm({...problemForm, principalID: event.target.value})
+        }
+        if(event.target.name === 'walletAddress'){
+            setProblemForm({...problemForm, walletAddress: event.target.value})
+        }
 
         if(event.target.name === 'submitQ'){
             console.log(queryCtx)
+            console.log(problemForm.collection)
 
             const queryParams = {cID: problemForm.collection}
 
+            queryCtx.setPrincipalID()
             queryCtx.setQuery(queryParams)
 
             console.log(queryCtx.qRes)
@@ -77,24 +88,24 @@ let HelpTool = () => {
                             </Select>
                     </div>
                     <div className='formItem'>
-                        <TextField id="outlined-basic" label="NFT Mint Number" variant="outlined" />
+                        <TextField name='mintNum' id="outlined-basic" label="NFT Mint Number" variant="outlined" onKeyUp={handleChange}/>
                     </div>
                     <div className='formItem'>
-                        <TextField id="outlined-basic" label="Principal ID" variant="outlined" />
+                        <TextField name='principalID' id="outlined-basic" label="Principal ID" variant="outlined" onKeyUp={handleChange}/>
                     </div>
                     <div className='formItem'>
-                        <TextField id="outlined-basic" label="Wallet Address" variant="outlined" />
+                        <TextField name='walletAddress' id="outlined-basic" label="Wallet Address" variant="outlined" onKeyUp={handleChange}/>
                     </div>
                     <div className='formItem submitButton'>
                         <Button name='submitQ' variant="contained" onClick={handleChange}>Make the Magic</Button>
                     </div>
                 </FormControl>
             </div>
-            {queryCtx.qRes === true ?
+            {queryCtx.query === 1 ?
             <div>
                 <section className='resSection'>
                     {problemForm.problem === 0 ? 
-                        <div>
+                        <div className='tableDisplay'>
                             <h2>NFT History</h2>
                             <table>
                                 <tr>
@@ -105,9 +116,18 @@ let HelpTool = () => {
                                     <td>Escrow Address</td>
                                     <td>Escrow Status</td>
                                 </tr>
-                                <tr>
-
-                                </tr>
+                                {queryCtx.qRes.map((item) =>{
+                                    return(
+                                    <tr>
+                                        <td>{item.buyer}</td>                            
+                                        <td>{item.time}</td>
+                                        <td>{item.time}</td>
+                                        <td>'Unknown'</td>
+                                        <td>'Unknown'</td>
+                                        <td>'Unknown'</td>
+                                    </tr>
+                                    )
+                                })}
                             </table>
                         </div> :
                     problemForm.problem === 1 ?
