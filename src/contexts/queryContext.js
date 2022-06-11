@@ -29,12 +29,14 @@ export const QueryContextProvider = (props) =>{
     const [walletAddress, setWalletAddress] = useState('')
 
     const queryHandler = async (q) =>{
-        const apiURI = `https://git.heroku.com/no-cors-server.git/call/${q.cID}/transactions`
+        // const apiURI = `http://git.heroku.com/no-cors-server.git/call/${q.cID}/transactions/`
+        // const apiURI = `http://localhost:3005/call/${q.cID}/transactions`
+        const apiURI = `https://cors-prox-any.herokuapp.com/https://limitless-shore-90887.herokuapp.com/call/${q.cID}/transactions`
         let fetchedData = ''
 
         await fetch(apiURI, {
             'method': 'GET',
-            'headers': {'Target-URL': "https://limitless-shore-90887.herokuapp.com"}
+            'headers': {'Target-URL': "https://limitless-shore-90887.herokuapp.com/", 'content-type': 'text/plain'},
         }).then( async (response) => {
             const waitRes = await response.json()
             console.log(waitRes)
@@ -43,6 +45,18 @@ export const QueryContextProvider = (props) =>{
         .catch(err => {
             console.error(err);
         });
+
+        // await fetch(apiURI, {
+        //     'method': 'GET',
+        //     'headers': {'Target-URL': "https://limitless-shore-90887.herokuapp.com/", 'content-type': 'text/plain'},
+        // }).then( async (response) => {
+        //     const waitRes = await response.json()
+        //     console.log(waitRes)
+        //     fetchedData = waitRes
+        // })
+        // .catch(err => {
+        //     console.error(err);
+        // });
 
         switch (principalID) {
             case !'':
