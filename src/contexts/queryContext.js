@@ -28,9 +28,8 @@ export const QueryContextProvider = (props) =>{
     const [principalID, setPrincipalID] = useState('')
     const [walletAddress, setWalletAddress] = useState('')
 
+    //Handler Functions
     const queryHandler = async (q) =>{
-        // const apiURI = `http://git.heroku.com/no-cors-server.git/call/${q.cID}/transactions/`
-        // const apiURI = `http://localhost:3005/call/${q.cID}/transactions`
         const apiURI = `https://cors-prox-any.herokuapp.com/https://limitless-shore-90887.herokuapp.com/call/${q.cID}/transactions`
         let fetchedData = ''
 
@@ -46,18 +45,6 @@ export const QueryContextProvider = (props) =>{
             console.error(err);
         });
 
-        // await fetch(apiURI, {
-        //     'method': 'GET',
-        //     'headers': {'Target-URL': "https://limitless-shore-90887.herokuapp.com/", 'content-type': 'text/plain'},
-        // }).then( async (response) => {
-        //     const waitRes = await response.json()
-        //     console.log(waitRes)
-        //     fetchedData = waitRes
-        // })
-        // .catch(err => {
-        //     console.error(err);
-        // });
-
         switch (principalID) {
             case !'':
                 fetchedData.filter( item => item.token === principalID)
@@ -71,6 +58,7 @@ export const QueryContextProvider = (props) =>{
           
         setQuery(1)
     }
+
     const qResHandler = (qRes) =>{setQRes(qRes)}
     const qTypeHandler = () =>{setQType(qType)}
     const nftMintNumHandler = () =>{setNftMintNum(nftMintNum)}

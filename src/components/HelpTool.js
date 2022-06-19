@@ -56,6 +56,7 @@ let HelpTool = () => {
             <div>
                 <FormControl className='devHelpForm'>
                     <div className='formItem'>
+                        <FormControl>
                             <InputLabel>Problem</InputLabel>
                             <Select
                                 labelId='problem-selection-label'
@@ -71,8 +72,10 @@ let HelpTool = () => {
                                 <MenuItem value={4}>I can't see me NFT in Stoic, Plug, or Entrepot</MenuItem>
                                 <MenuItem value={0}>I want NFT information to self-diagnose</MenuItem>
                             </Select>
+                        </FormControl>
                     </div>
                     <div className='formItem'>
+                        <FormControl>
                             <InputLabel>NFT collection</InputLabel>
                             <Select
                                 labelId='collection-selection-label'
@@ -86,6 +89,7 @@ let HelpTool = () => {
                                     return <MenuItem key={index} value={item.id}>{item.name}</MenuItem>
                                 })}
                             </Select>
+                        </FormControl>
                     </div>
                     <div className='formItem'>
                         <TextField name='mintNum' id="outlined-basic" label="NFT Mint Number" variant="outlined" onKeyUp={handleChange}/>
@@ -117,14 +121,17 @@ let HelpTool = () => {
                                     <td>Escrow Status</td>
                                 </tr>
                                 {queryCtx.qRes.map((item) =>{
+                                    let nanoTime = item.time
+                                    let milliTime = Math.round(nanoTime / 1000000)
+                                    let itemTime = new Date(milliTime)
                                     return(
                                     <tr>
                                         <td>{item.buyer}</td>                            
-                                        <td>{item.time}</td>
-                                        <td>{item.time}</td>
-                                        <td>'Unknown'</td>
-                                        <td>'Unknown'</td>
-                                        <td>'Unknown'</td>
+                                        <td>{itemTime.getDate()}/{itemTime.getMonth()}/{itemTime.getFullYear()}</td>
+                                        <td>{itemTime.toLocaleTimeString()}</td>
+                                        <td>'N/A'</td>
+                                        <td>'N/A'</td>
+                                        <td>'N/A'</td>
                                     </tr>
                                     )
                                 })}

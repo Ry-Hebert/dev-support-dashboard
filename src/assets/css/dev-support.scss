@@ -37,6 +37,7 @@
 }
 
 .tableDisplay{
+    margin: 0rem .5rem;
     table {
         font-family: arial, sans-serif;
         border-collapse: collapse;
@@ -56,6 +57,9 @@
 
 @media only screen and (min-width:34rem) 
 {
+    .tableDisplay{
+        margin: 0rem 1rem;
+    }
     
 }
 
