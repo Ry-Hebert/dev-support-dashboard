@@ -36,7 +36,7 @@ export const QueryContextProvider = (props) =>{
 
         await fetch(apiURI, {
             'method': 'GET',
-            'headers': {'Target-URL': "https://limitless-shore-90887.herokuapp.com/", 'content-type': 'text/plain'},
+            'headers': {'Target-URL': "https://limitless-shore-90887.herokuapp.com/"},
         }).then( async (response) => {
             const waitRes = await response.json()
             console.log(waitRes)
