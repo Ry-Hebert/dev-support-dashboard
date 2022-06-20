@@ -127,7 +127,7 @@ let HelpTool = () => {
                                     return(
                                     <tr>
                                         <td>{item.buyer}</td>                            
-                                        <td>{itemTime.getDate()}/{itemTime.getMonth()}/{itemTime.getFullYear()}</td>
+                                        <td>{itemTime.getMonth()}/{itemTime.getDate()}/{itemTime.getFullYear()}</td>
                                         <td>{itemTime.toLocaleTimeString()}</td>
                                         <td>'N/A'</td>
                                         <td>'N/A'</td>
