@@ -38,7 +38,10 @@ let HelpTool = () => {
             console.log(queryCtx)
             console.log(problemForm.collection)
 
-            const queryParams = {cID: problemForm.collection}
+            const queryParams = {
+                cID: problemForm.collection,
+                problem: problemForm.problem
+            }
 
             queryCtx.setPrincipalID()
             queryCtx.setQuery(queryParams)

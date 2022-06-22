@@ -30,6 +30,23 @@ export const QueryContextProvider = (props) =>{
 
     //Handler Functions
     const queryHandler = async (q) =>{
+        
+        if(q.probID = 1){
+
+        }
+        if(q.probID = 2){
+
+        }
+        if(q.probID = 3){
+
+        }
+        if(q.probID = 4){
+
+        }
+        if(q.probID = 5){
+
+        }
+
         const apiURI = `https://cors-prox-any.herokuapp.com/https://limitless-shore-90887.herokuapp.com/call/${q.cID}/transactions`
         let fetchedData = ''
 
@@ -46,7 +63,7 @@ export const QueryContextProvider = (props) =>{
         });
 
         switch (principalID) {
-            case !'':
+            case(!== ''):
                 fetchedData.filter( item => item.token === principalID)
                 qResHandler(fetchedData)
                 break;
