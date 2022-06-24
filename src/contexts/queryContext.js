@@ -31,46 +31,45 @@ export const QueryContextProvider = (props) =>{
     //Handler Functions
     const queryHandler = async (q) =>{
         
-        if(q.probID = 1){
+        switch (q.probID){
+            case 1:
+                break
+            case 2:
+                break
+            case 3:
+                break
+            case 4:
+                break
+            case 0:
 
-        }
-        if(q.probID = 2){
-
-        }
-        if(q.probID = 3){
-
-        }
-        if(q.probID = 4){
-
-        }
-        if(q.probID = 5){
-
-        }
-
-        const apiURI = `https://cors-prox-any.herokuapp.com/https://limitless-shore-90887.herokuapp.com/call/${q.cID}/transactions`
-        let fetchedData = ''
-
-        await fetch(apiURI, {
-            'method': 'GET',
-            'headers': {'Target-URL': "https://limitless-shore-90887.herokuapp.com/"},
-        }).then( async (response) => {
-            const waitRes = await response.json()
-            console.log(waitRes)
-            fetchedData = waitRes
-        })
-        .catch(err => {
-            console.error(err);
-        });
-
-        switch (principalID) {
-            case(!== ''):
-                fetchedData.filter( item => item.token === principalID)
-                qResHandler(fetchedData)
-                break;
+                const apiURI = `https://cors-prox-any.herokuapp.com/https://limitless-shore-90887.herokuapp.com/call/${q.cID}/transactions`
+                let fetchedData = ''
         
+                await fetch(apiURI, {
+                    'method': 'GET',
+                    'headers': {'Target-URL': "https://limitless-shore-90887.herokuapp.com/"},
+                }).then( async (response) => {
+                    const waitRes = await response.json()
+                    console.log(waitRes)
+                    fetchedData = waitRes
+                })
+                .catch(err => {
+                    console.error(err);
+                });
+        
+                if(principalID !== ''){
+                    
+                    let filteredData = fetchedData.filter( item => item.token === principalID)
+                    
+                    qResHandler(filteredData)
+                }
+                else{
+                    qResHandler(fetchedData)
+                }
+
+                break
             default:
-                qResHandler(fetchedData)
-                break;
+
         }
           
         setQuery(1)

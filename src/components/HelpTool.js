@@ -17,7 +17,7 @@ let HelpTool = () => {
     const entrepotCtx = useEntrepotCollectionsContext()
 
     const handleChange = (event) => {
-
+        console.log(problemForm)
         if(event.target.name === 'problem'){
             setProblemForm({...problemForm, problem: event.target.value})
         }
@@ -40,10 +40,12 @@ let HelpTool = () => {
 
             const queryParams = {
                 cID: problemForm.collection,
-                problem: problemForm.problem
+                probID: problemForm.problem
             }
 
-            queryCtx.setPrincipalID()
+            
+            queryCtx.setNftMintNum(problemForm.mintNum)
+            queryCtx.setPrincipalID(problemForm.principalID)
             queryCtx.setQuery(queryParams)
 
             console.log(queryCtx.qRes)
@@ -51,7 +53,7 @@ let HelpTool = () => {
 
         // console.log(queryCtx)
         // console.log(problemForm)
-        console.log(entrepotCtx)
+        // console.log(entrepotCtx)
     }
 
     return(
@@ -98,7 +100,7 @@ let HelpTool = () => {
                         <TextField name='mintNum' id="outlined-basic" label="NFT Mint Number" variant="outlined" onKeyUp={handleChange}/>
                     </div>
                     <div className='formItem'>
-                        <TextField name='principalID' id="outlined-basic" label="Principal ID" variant="outlined" onKeyUp={handleChange}/>
+                        <TextField name='principalID' id="outlined-basic" label="Principal ID" variant="outlined" onChange={handleChange}/>
                     </div>
                     <div className='formItem'>
                         <TextField name='walletAddress' id="outlined-basic" label="Wallet Address" variant="outlined" onKeyUp={handleChange}/>
