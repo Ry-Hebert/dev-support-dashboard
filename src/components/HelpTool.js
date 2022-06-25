@@ -122,7 +122,7 @@ let HelpTool = () => {
                             <h2>NFT History</h2>
                             <table>
                                 <tr>
-                                    <td>Address</td>
+                                    <td>Buyer Address</td>
                                     <td>Date</td>
                                     <td>Time</td>
                                     <td>Type</td>

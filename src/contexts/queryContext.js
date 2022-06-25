@@ -65,7 +65,7 @@ export const QueryContextProvider = (props) =>{
                 });
                 
                 console.log(q.princID)
-                if()
+                
                 if(q.princID !== ''){
                     
                     let filteredData = fetchedData.filter( item => item.token === q.princID)
