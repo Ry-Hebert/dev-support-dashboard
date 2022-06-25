@@ -40,12 +40,16 @@ let HelpTool = () => {
 
             const queryParams = {
                 cID: problemForm.collection,
-                probID: problemForm.problem
+                probID: problemForm.problem,
+                princID: problemForm.principalID,
+                mintNum: problemForm.mintNum,
+                walletAddress: problemForm.walletAddress
             }
 
             
             queryCtx.setNftMintNum(problemForm.mintNum)
             queryCtx.setPrincipalID(problemForm.principalID)
+            queryCtx.setWalletAddress(problemForm.walletAddress)
             queryCtx.setQuery(queryParams)
 
             console.log(queryCtx.qRes)

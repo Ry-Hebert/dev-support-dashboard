@@ -31,8 +31,15 @@ export const QueryContextProvider = (props) =>{
     //Handler Functions
     const queryHandler = async (q) =>{
         
+        let apiURI = `https://cors-prox-any.herokuapp.com/https://limitless-shore-90887.herokuapp.com/call/${q.cID}/`
+        let fetchedData = ''
+
         switch (q.probID){
+            //Sold NFT But Havent Recived ICP
             case 1:
+
+
+
                 break
             case 2:
                 break
@@ -40,10 +47,10 @@ export const QueryContextProvider = (props) =>{
                 break
             case 4:
                 break
+            //Self Diagnosis Option
             case 0:
 
-                const apiURI = `https://cors-prox-any.herokuapp.com/https://limitless-shore-90887.herokuapp.com/call/${q.cID}/transactions`
-                let fetchedData = ''
+                apiURI += `transactions`
         
                 await fetch(apiURI, {
                     'method': 'GET',
@@ -56,10 +63,12 @@ export const QueryContextProvider = (props) =>{
                 .catch(err => {
                     console.error(err);
                 });
-        
-                if(principalID !== ''){
+                
+                console.log(q.princID)
+                if()
+                if(q.princID !== ''){
                     
-                    let filteredData = fetchedData.filter( item => item.token === principalID)
+                    let filteredData = fetchedData.filter( item => item.token === q.princID)
                     
                     qResHandler(filteredData)
                 }
@@ -76,10 +85,10 @@ export const QueryContextProvider = (props) =>{
     }
 
     const qResHandler = (qRes) =>{setQRes(qRes)}
-    const qTypeHandler = () =>{setQType(qType)}
-    const nftMintNumHandler = () =>{setNftMintNum(nftMintNum)}
-    const principalIDHandler = () =>{setPrincipalID(principalID)}
-    const walletAddressHandler = () =>{setWalletAddress(walletAddress)}
+    const qTypeHandler = (qType) =>{setQType(qType)}
+    const nftMintNumHandler = (nftMintNum) =>{setNftMintNum(nftMintNum)}
+    const principalIDHandler = (principalID) =>{setPrincipalID(principalID)}
+    const walletAddressHandler = (walletAddress) =>{setWalletAddress(walletAddress)}
 
     return (
         <QueryContext.Provider value={{
