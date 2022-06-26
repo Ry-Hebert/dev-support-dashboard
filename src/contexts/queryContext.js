@@ -38,23 +38,23 @@ export const QueryContextProvider = (props) =>{
             //Sold NFT But Havent Recived ICP
             case 1:
 
-                // apiURI += `details`
+                apiURI += `details`
 
-                // if(q.principalID != ''){
+                if(q.principalID != ''){
+                    
+                }
 
-                // }
-
-                // await fetch(apiURI, {
-                //     'method': 'GET',
-                //     'headers': {'Target-URL': "https://limitless-shore-90887.herokuapp.com/"},
-                // }).then( async (response) => {
-                //     const waitRes = await response.json()
-                //     console.log(waitRes)
-                //     fetchedData = waitRes
-                // })
-                // .catch(err => {
-                //     console.error(err);
-                // });
+                await fetch(apiURI, {
+                    'method': 'GET',
+                    'headers': {'Target-URL': "https://limitless-shore-90887.herokuapp.com/"},
+                }).then( async (response) => {
+                    const waitRes = await response.json()
+                    console.log(waitRes)
+                    fetchedData = waitRes
+                })
+                .catch(err => {
+                    console.error(err);
+                });
 
 
 
