@@ -78,7 +78,7 @@ let HelpTool = () => {
                                 <MenuItem value={1}>I sold an NFT but haven't received ICP</MenuItem>
                                 <MenuItem value={2}>I bought an NFT but haven't received the NFT</MenuItem>
                                 <MenuItem value={3}>I wrapped / unwrapped my NFT and it disappeared</MenuItem>
-                                <MenuItem value={4}>I can't see me NFT in Stoic, Plug, or Entrepot</MenuItem>
+                                <MenuItem value={4}>I can't see my NFT in Stoic, Plug, or Entrepot</MenuItem>
                                 <MenuItem value={0}>I want NFT information to self-diagnose</MenuItem>
                             </Select>
                         </FormControl>
