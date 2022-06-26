@@ -136,7 +136,7 @@ let HelpTool = () => {
                                     return(
                                     <tr>
                                         <td>{item.buyer}</td>                            
-                                        <td>{itemTime.getMonth()}/{itemTime.getDate()}/{itemTime.getFullYear()}</td>
+                                        <td>{itemTime.getMonth() + 1}/{itemTime.getDate()}/{itemTime.getFullYear()}</td>
                                         <td>{itemTime.toLocaleTimeString()}</td>
                                         <td>'N/A'</td>
                                         <td>'N/A'</td>
@@ -147,7 +147,9 @@ let HelpTool = () => {
                             </table>
                         </div> :
                     problemForm.problem === 1 ?
-                        <div></div> :
+                        <div>
+                            
+                        </div> :
                     problemForm.problem === 2 ?
                         <div></div> :
                     problemForm.problem === 3 ?

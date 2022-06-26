@@ -38,6 +38,24 @@ export const QueryContextProvider = (props) =>{
             //Sold NFT But Havent Recived ICP
             case 1:
 
+                // apiURI += `details`
+
+                // if(q.principalID != ''){
+
+                // }
+
+                // await fetch(apiURI, {
+                //     'method': 'GET',
+                //     'headers': {'Target-URL': "https://limitless-shore-90887.herokuapp.com/"},
+                // }).then( async (response) => {
+                //     const waitRes = await response.json()
+                //     console.log(waitRes)
+                //     fetchedData = waitRes
+                // })
+                // .catch(err => {
+                //     console.error(err);
+                // });
+
 
 
                 break
@@ -64,11 +82,9 @@ export const QueryContextProvider = (props) =>{
                     console.error(err);
                 });
                 
-                console.log(q.princID)
-                
-                if(q.princID !== ''){
+                if(q.walletAddress !== ''){
                     
-                    let filteredData = fetchedData.filter( item => item.token === q.princID)
+                    let filteredData = fetchedData.filter( item => item.buyer === q.walletAddress)
                     
                     qResHandler(filteredData)
                 }
