@@ -5,9 +5,6 @@ import FormControl from '@mui/material/FormControl';
 import TextField from '@mui/material/TextField';
 import Select from '@mui/material/Select';
 import Button from '@mui/material/Button';
-import { Principal } from '@dfinity/principal'
-import { sha224 } from '@dfinity/principal/lib/esm/utils/sha224';
-import { getCrc32 } from '@dfinity/principal/lib/esm/utils/getCrc';
 import { useQueryContext } from '../contexts/queryContext'
 import { useEntrepotCollectionsContext } from '../contexts/entrepotCollectionsContext'
 
@@ -19,45 +16,6 @@ let HelpTool = () => {
     const queryCtx = useQueryContext()
     const entrepotCtx = useEntrepotCollectionsContext()
 
-
-    const toHexString = (byteArray)  =>{
-        return Array.from(byteArray, function(byte) {
-          return ('0' + (byte & 0xFF).toString(16)).slice(-2);
-        }).join('')
-      }
-
-    const to32bits = num => {
-        let b = new ArrayBuffer(4);
-        new DataView(b).setUint32(0, num);
-        return Array.from(new Uint8Array(b));
-    }
-
-    const getSubAccountArray = (s) => {
-        if (Array.isArray(s)){
-          return s.concat(Array(32-s.length).fill(0));
-        } else {
-          //32 bit number only
-          return Array(28).fill(0).concat(to32bits(s ? s : 0))
-        }
-    };
-
-    const principalToAccountIdentifier = (p, s) => {
-        const padding = Buffer("\x0Aaccount-id");
-        const array = new Uint8Array([
-            ...padding,
-            ...Principal.fromText(p).toUint8Array(),
-            ...getSubAccountArray(s)
-        ]);
-        const hash = sha224(array);
-        const checksum = to32bits(getCrc32(hash));
-        const array2 = new Uint8Array([
-            ...checksum,
-            ...hash
-        ]);
-        return toHexString(array2);
-    };
-
-    
     const handleChange = (event) => {
         console.log(problemForm)
         if(event.target.name === 'problem'){
@@ -170,18 +128,11 @@ let HelpTool = () => {
                                     <td>Type</td>
                                     <td>Escrow Address</td>
                                     <td>Escrow Status</td>
-                                    <td>Principal</td>
                                 </tr>
-                                {queryCtx.qRes.map((item, i) =>{
+                                {queryCtx.qRes.map((item) =>{
                                     let nanoTime = item.time
                                     let milliTime = Math.round(nanoTime / 1000000)
                                     let itemTime = new Date(milliTime)
-                                    if(i <5 ){
-                                        console.log(item.seller._arr)
-                                        console.log(Principal.fromUint8Array(item.seller._arr))
-                                        console.log(Principal.fromUint8Array(item.seller).toText())
-                                        console.log(principalToAccountIdentifier(item.seller._arr, 0))
-                                    }
                                     return(
                                     <tr>
                                         <td>{item.buyer}</td>                            
@@ -190,7 +141,6 @@ let HelpTool = () => {
                                         <td>'N/A'</td>
                                         <td>'N/A'</td>
                                         <td>'N/A'</td>
-                                        <td>{Principal.fromUint8Array(item.seller._arr).toText()}</td>
                                     </tr>
                                     )
                                 })}
