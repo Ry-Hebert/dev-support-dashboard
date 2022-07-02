@@ -5,7 +5,6 @@ import FormControl from '@mui/material/FormControl';
 import TextField from '@mui/material/TextField';
 import Select from '@mui/material/Select';
 import Button from '@mui/material/Button';
-// import { Principal } from '@dfinity/principal';
 import { useQueryContext } from '../contexts/queryContext'
 import { useEntrepotCollectionsContext } from '../contexts/entrepotCollectionsContext'
 
@@ -56,9 +55,6 @@ let HelpTool = () => {
             console.log(queryCtx.qRes)
         }
 
-        // console.log(queryCtx)
-        // console.log(problemForm)
-        // console.log(entrepotCtx)
     }
 
     return(
@@ -127,30 +123,17 @@ let HelpTool = () => {
                                     <td>Date</td>
                                     <td>Time</td>
                                     <td>Price</td>
-                                    {/* <td>Type</td>
-                                    <td>Escrow Address</td>
-                                    <td>Escrow Status</td> */}
                                 </tr>
                                 {queryCtx.qRes.map((item, i) =>{
                                     let nanoTime = item.time
                                     let milliTime = Math.round(nanoTime / 1000000)
                                     let itemTime = new Date(milliTime)
-                                    // if(i <3){
-                                    //     let x1 = Principal.fromUint8Array(item.seller._arr)
-                                    //     let x2 = Object.values(x1._arr)
-                                    //     console.log(item.seller)
-                                    //     console.log(Principal.toString(x1))
-                                    //     console.log(x1.toText())
-                                    // }
                                     return(
                                     <tr>
                                         <td>{item.buyer}</td>                            
                                         <td>{itemTime.getMonth() + 1}/{itemTime.getDate()}/{itemTime.getFullYear()}</td>
                                         <td>{itemTime.toLocaleTimeString()}</td>
                                         <td>{item.price / 100000000} ICP</td>
-                                        {/* <td>'N/A'</td>
-                                        <td>'N/A'</td>
-                                        <td>'N/A'</td> */}
                                     </tr>
                                     )
                                 })}
