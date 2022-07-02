@@ -55,9 +55,6 @@ let HelpTool = () => {
             console.log(queryCtx.qRes)
         }
 
-        // console.log(queryCtx)
-        // console.log(problemForm)
-        // console.log(entrepotCtx)
     }
 
     return(
@@ -125,11 +122,9 @@ let HelpTool = () => {
                                     <td>Buyer Address</td>
                                     <td>Date</td>
                                     <td>Time</td>
-                                    <td>Type</td>
-                                    <td>Escrow Address</td>
-                                    <td>Escrow Status</td>
+                                    <td>Price</td>
                                 </tr>
-                                {queryCtx.qRes.map((item) =>{
+                                {queryCtx.qRes.map((item, i) =>{
                                     let nanoTime = item.time
                                     let milliTime = Math.round(nanoTime / 1000000)
                                     let itemTime = new Date(milliTime)
@@ -138,9 +133,7 @@ let HelpTool = () => {
                                         <td>{item.buyer}</td>                            
                                         <td>{itemTime.getMonth() + 1}/{itemTime.getDate()}/{itemTime.getFullYear()}</td>
                                         <td>{itemTime.toLocaleTimeString()}</td>
-                                        <td>'N/A'</td>
-                                        <td>'N/A'</td>
-                                        <td>'N/A'</td>
+                                        <td>{item.price / 100000000} ICP</td>
                                     </tr>
                                     )
                                 })}

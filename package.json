@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@dfinity/agent": "^0.11.0",
+    "@dfinity/agent": "^0.11.3",
     "@dfinity/candid": "^0.11.0",
-    "@dfinity/principal": "^0.11.0",
+    "@dfinity/principal": "^0.11.3",
     "@emotion/react": "^11.8.2",
     "@emotion/styled": "^11.8.1",
     "@mui/icons-material": "^5.5.1",
@@ -13,8 +13,7 @@
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^12.0.0",
     "@testing-library/user-event": "^13.2.1",
-    "axios": "^0.27.2",
-    "fetch-no-cors": "^1.0.13",
+    "buffer": "^6.0.3",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-router": "^6.2.2",
@@ -46,5 +45,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "typescript": "^4.7.4"
   }
 }
