@@ -40,7 +40,7 @@ export const QueryContextProvider = (props) =>{
 
                 apiURI += `details`
 
-                if(q.principalID != ''){
+                if(q.principalID !== ''){
                     
                 }
 

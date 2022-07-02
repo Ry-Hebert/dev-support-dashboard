@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@dfinity/agent": "^0.11.0",
+    "@dfinity/agent": "^0.11.3",
     "@dfinity/candid": "^0.11.0",
-    "@dfinity/principal": "^0.11.0",
+    "@dfinity/principal": "^0.11.3",
     "@emotion/react": "^11.8.2",
     "@emotion/styled": "^11.8.1",
     "@mui/icons-material": "^5.5.1",
@@ -45,5 +45,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "typescript": "^4.7.4"
   }
 }
