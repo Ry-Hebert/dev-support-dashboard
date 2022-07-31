@@ -120,41 +120,84 @@ let HelpTool = () => {
                 <section className='resSection'>
                     {problemForm.problem === 0 ? 
                         <div className='tableDisplay'>
-                            <h2>NFT History</h2>
+                            <h2>Transaction History</h2>
                             <table>
-                                <tr>
-                                    <td>Buyer Address</td>
-                                    <td>Date</td>
-                                    <td>Time</td>
-                                    <td>Price</td>
-                                    {/* <td>Type</td>
-                                    <td>Escrow Address</td>
-                                    <td>Escrow Status</td> */}
-                                </tr>
-                                {queryCtx.qRes.map((item, i) =>{
-                                    let nanoTime = item.time
-                                    let milliTime = Math.round(nanoTime / 1000000)
-                                    let itemTime = new Date(milliTime)
-                                    // if(i <3){
-                                    //     let x1 = Principal.fromUint8Array(item.seller._arr)
-                                    //     let x2 = Object.values(x1._arr)
-                                    //     console.log(item.seller)
-                                    //     console.log(Principal.toString(x1))
-                                    //     console.log(x1.toText())
-                                    // }
-                                    return(
+                                <tbody>
                                     <tr>
-                                        <td>{item.buyer}</td>                            
-                                        <td>{itemTime.getMonth() + 1}/{itemTime.getDate()}/{itemTime.getFullYear()}</td>
-                                        <td>{itemTime.toLocaleTimeString()}</td>
-                                        <td>{item.price / 100000000} ICP</td>
-                                        {/* <td>'N/A'</td>
-                                        <td>'N/A'</td>
-                                        <td>'N/A'</td> */}
+                                        <td>Buyer Address</td>
+                                        <td>Date</td>
+                                        <td>Time</td>
+                                        <td>Price</td>
+                                        {/* <td>Type</td>
+                                        <td>Escrow Address</td>
+                                        <td>Escrow Status</td> */}
                                     </tr>
-                                    )
-                                })}
+                                    {queryCtx.qRes.map((item, i) =>{
+                                        let nanoTime = item.time
+                                        let milliTime = Math.round(nanoTime / 1000000)
+                                        let itemTime = new Date(milliTime)
+                                        // if(i <3){
+                                        //     let x1 = Principal.fromUint8Array(item.seller._arr)
+                                        //     let x2 = Object.values(x1._arr)
+                                        //     console.log(item.seller)
+                                        //     console.log(Principal.toString(x1))
+                                        //     console.log(x1.toText())
+                                        // }
+                                        return(
+                                        <tr>
+                                            <td>{item.buyer}</td>                            
+                                            <td>{itemTime.getMonth() + 1}/{itemTime.getDate()}/{itemTime.getFullYear()}</td>
+                                            <td>{itemTime.toLocaleTimeString()}</td>
+                                            <td>{item.price / 100000000} ICP</td>
+                                            {/* <td>'N/A'</td>
+                                            <td>'N/A'</td>
+                                            <td>'N/A'</td> */}
+                                        </tr>
+                                        )
+                                    })}
+                                </tbody>
                             </table>
+                            {queryCtx.qRes2 !== [] ?
+                                <div className='tableDisplay'>
+                                    <h2>Sale Transaction History</h2>
+                                    <table>
+                                        <tbody>
+                                            <tr>
+                                                <td>Buyer Address</td>
+                                                <td>Date</td>
+                                                <td>Time</td>
+                                                <td>Price</td>
+                                                {/* <td>Type</td>
+                                                <td>Escrow Address</td>
+                                                <td>Escrow Status</td> */}
+                                            </tr>
+                                            {queryCtx.qRes2.map((item, i) =>{
+                                                let nanoTime = item.time
+                                                let milliTime = Math.round(nanoTime / 1000000)
+                                                let itemTime = new Date(milliTime)
+                                                // if(i <3){
+                                                //     let x1 = Principal.fromUint8Array(item.seller._arr)
+                                                //     let x2 = Object.values(x1._arr)
+                                                //     console.log(item.seller)
+                                                //     console.log(Principal.toString(x1))
+                                                //     console.log(x1.toText())
+                                                // }
+                                                return(
+                                                <tr>
+                                                    <td>{item.buyer}</td>                            
+                                                    <td>{itemTime.getMonth() + 1}/{itemTime.getDate()}/{itemTime.getFullYear()}</td>
+                                                    <td>{itemTime.toLocaleTimeString()}</td>
+                                                    <td>{item.price / 100000000} ICP</td>
+                                                    {/* <td>'N/A'</td>
+                                                    <td>'N/A'</td>
+                                                    <td>'N/A'</td> */}
+                                                </tr>
+                                                )
+                                            })}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            : null}
                         </div> :
                     problemForm.problem === 1 ?
                         <div>
