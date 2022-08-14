@@ -5,10 +5,11 @@ import FormControl from '@mui/material/FormControl';
 import TextField from '@mui/material/TextField';
 import Select from '@mui/material/Select';
 import Button from '@mui/material/Button';
-// import { Principal } from '@dfinity/principal';
+import CircularProgress from '@mui/material/CircularProgress';
+import Box from '@mui/material/Box';
 import { useQueryContext } from '../contexts/queryContext'
 import { useEntrepotCollectionsContext } from '../contexts/entrepotCollectionsContext'
-
+// import { Principal } from '@dfinity/principal';
 
 let HelpTool = () => {
 
@@ -39,6 +40,9 @@ let HelpTool = () => {
             console.log(queryCtx)
             console.log(problemForm.collection)
 
+            entrepotCtx.setIsOld()
+            entrepotCtx.setCollectionMethods(problemForm.collection)
+
             const queryParams = {
                 cID: problemForm.collection,
                 probID: problemForm.problem,
@@ -47,13 +51,13 @@ let HelpTool = () => {
                 walletAddress: problemForm.walletAddress
             }
 
-            
             queryCtx.setNftMintNum(problemForm.mintNum)
             queryCtx.setPrincipalID(problemForm.principalID)
             queryCtx.setWalletAddress(problemForm.walletAddress)
             queryCtx.setQuery(queryParams)
 
             console.log(queryCtx.qRes)
+            console.log(entrepotCtx.isOld)
         }
 
         // console.log(queryCtx)
@@ -201,7 +205,19 @@ let HelpTool = () => {
                         </div> :
                     problemForm.problem === 1 ?
                         <div>
-                            
+                            {entrepotCtx.isOld === true ?
+                                <div className='tableDisplay'>
+                                    <p>Ok, We found a potential solution! Lets run "Check Payments" to see if this solves the problem.</p>
+                                    <div className='formItem submitButton'>
+                                        <Button name='checkPayments' variant="contained" onClick={handleChange}>Check Payments</Button>
+                                    </div>
+                                </div> :
+                            entrepotCtx.isOld === false ?
+                                <div>
+                                    Success: Is New
+                                </div> :
+                            <div><Box sx={{ display: 'flex' }}><CircularProgress /></Box></div>
+                            }
                         </div> :
                     problemForm.problem === 2 ?
                         <div></div> :

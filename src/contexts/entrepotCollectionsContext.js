@@ -9,11 +9,15 @@ const apiURI = 'https://us-central1-entrepot-api.cloudfunctions.net/api/collecti
 
 const EntrepotCollectionsContext = createContext({
     entrepotCollections: [],
+    collectionMethods: [],
+    isOld: '',
 })
 
 export const EntrepotCollectionsContextProvider = (props) =>{
     
     const [entrepotCollections, setEntrepotCollections] = useState([])
+    const [collectionMethods, setCollectionMethods] = useState([])
+    const [isOld, setIsOld] = useState('')
 
     useEffect(() =>{
         const fetchData = async () =>{
@@ -43,9 +47,33 @@ export const EntrepotCollectionsContextProvider = (props) =>{
 
         fetchData()
     }, [])
+
+    const collectionMethodsHandler = async (canID) =>{
+        const uriAddress = `http://tonq-collection-info.herokuapp.com/directoryinfo/${canID}`
+
+        const canisterMethods = await fetch(uriAddress)
+        const jsonCM = await canisterMethods.json()
+
+        console.log(jsonCM)
+        
+        const oldNew = jsonCM.includes('cronDisbursements')
+
+        setCollectionMethods(jsonCM)
+        setIsOld(!oldNew)
+    }
     
+    const isOldHandler = () =>{
+        setIsOld('')
+    }
+
     return (
-        <EntrepotCollectionsContext.Provider value={{ entrepotCollections }}>
+        <EntrepotCollectionsContext.Provider value={{
+            setCollectionMethods: collectionMethodsHandler,
+            setIsOld: isOldHandler,
+            entrepotCollections: entrepotCollections,
+            collectionMethods: collectionMethods,
+            isOld: isOld,
+            }}>
             {props.children}
         </EntrepotCollectionsContext.Provider>
     )

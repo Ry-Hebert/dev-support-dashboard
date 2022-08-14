@@ -36,7 +36,7 @@
     }
 }
 
-.tableDisplay{
+.tableDisplay .resOutput{
     margin: 0rem .5rem;
     table {
         font-family: arial, sans-serif;
@@ -57,7 +57,7 @@
 
 @media only screen and (min-width:34rem) 
 {
-    .tableDisplay{
+    .tableDisplay .resOutput{
         margin: 0rem 1rem;
     }
     
