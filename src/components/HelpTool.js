@@ -60,6 +60,10 @@ let HelpTool = () => {
             console.log(entrepotCtx.isOld)
         }
 
+        if(event.target.name === 'checkPayments'){
+            
+        }
+
         // console.log(queryCtx)
         // console.log(problemForm)
         // console.log(entrepotCtx)

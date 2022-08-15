@@ -31,6 +31,7 @@ export const QueryContextProvider = (props) =>{
     const [walletAddress, setWalletAddress] = useState('')
 
     //Handler Functions
+    //document: key names the 'q' object uses currently in function
     const queryHandler = async (q) =>{
         
         let apiURI = `https://cors-prox-any.herokuapp.com/https://limitless-shore-90887.herokuapp.com/call/${q.cID}/`
@@ -65,7 +66,6 @@ export const QueryContextProvider = (props) =>{
         switch (q.probID){
             //Sold NFT But Haven't Received ICP
             case 1:
-
 
                 break
             case 2:
