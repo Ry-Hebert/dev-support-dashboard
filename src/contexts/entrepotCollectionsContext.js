@@ -5,19 +5,22 @@ import React, {
     useEffect,
 } from 'react'
 
-const apiURI = 'https://us-central1-entrepot-api.cloudfunctions.net/api/collections'
-
 const EntrepotCollectionsContext = createContext({
     entrepotCollections: [],
     collectionMethods: [],
     isOld: '',
+    lastCanisterID: '',
+    cronDisbursements: false,
 })
 
 export const EntrepotCollectionsContextProvider = (props) =>{
+    const apiURI = 'https://us-central1-entrepot-api.cloudfunctions.net/api/collections'
     
     const [entrepotCollections, setEntrepotCollections] = useState([])
     const [collectionMethods, setCollectionMethods] = useState([])
     const [isOld, setIsOld] = useState('')
+    const [lastCanisterID, setLastCanisterID] = useState('')
+    const [cronDisbursements, setCronDisbursements] = useState(false)
 
     useEffect(() =>{
         const fetchData = async () =>{
@@ -48,22 +51,33 @@ export const EntrepotCollectionsContextProvider = (props) =>{
         fetchData()
     }, [])
 
-    const collectionMethodsHandler = async (canID) =>{
-        const uriAddress = `http://tonq-collection-info.herokuapp.com/directoryinfo/${canID}`
+    useEffect(() =>{
+        if(isOld === false){
+            let apiURI = `https://cors-prox-any.herokuapp.com/https://limitless-shore-90887.herokuapp.com/call/${lastCanisterID}/cronDisbursements`
 
+            fetch(apiURI, {
+                'method': 'GET',
+                'headers': {'Target-URL': "https://limitless-shore-90887.herokuapp.com/"},
+            }).then(()=>{setCronDisbursements(true)})
+        }
+    }, [isOld,lastCanisterID])
+
+    const collectionMethodsHandler = async (canID) =>{
+        setLastCanisterID(canID)
+        const uriAddress = `http://tonq-collection-info.herokuapp.com/directoryinfo/${canID}`
         const canisterMethods = await fetch(uriAddress)
         const jsonCM = await canisterMethods.json()
 
         console.log(jsonCM)
         
         const oldNew = jsonCM.includes('cronDisbursements')
-
         setCollectionMethods(jsonCM)
         setIsOld(!oldNew)
     }
     
     const isOldHandler = () =>{
         setIsOld('')
+        setCronDisbursements(false)
     }
 
     return (
@@ -73,6 +87,8 @@ export const EntrepotCollectionsContextProvider = (props) =>{
             entrepotCollections: entrepotCollections,
             collectionMethods: collectionMethods,
             isOld: isOld,
+            lastCanisterID: lastCanisterID,
+            cronDisbursements: cronDisbursements,
             }}>
             {props.children}
         </EntrepotCollectionsContext.Provider>

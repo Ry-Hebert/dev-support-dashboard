@@ -1,6 +1,5 @@
 import React from 'react'
 import HelpTool from './HelpTool'
-import { EntrepotCollectionsContextProvider} from '../contexts/entrepotCollectionsContext'
 
 let Home = () => {
     return(
@@ -9,9 +8,7 @@ let Home = () => {
                 <h1>How can we help you?</h1>
             </section>
             <section>
-                <EntrepotCollectionsContextProvider>
-                    <HelpTool/>
-                </EntrepotCollectionsContextProvider>                    
+                <HelpTool/>
             </section>
         </main>
     )

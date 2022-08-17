@@ -3,6 +3,7 @@ import React, {
     useContext,
     createContext,
 } from 'react'
+import { useEntrepotCollectionsContext } from '../contexts/entrepotCollectionsContext'
 
 const QueryContext = createContext({
     query: 0,
@@ -30,12 +31,16 @@ export const QueryContextProvider = (props) =>{
     const [principalID, setPrincipalID] = useState('')
     const [walletAddress, setWalletAddress] = useState('')
 
+    const entrepotCtx = useEntrepotCollectionsContext()
     //Handler Functions
+    //document: key names the 'q' object uses currently in function
     const queryHandler = async (q) =>{
         
         let apiURI = `https://cors-prox-any.herokuapp.com/https://limitless-shore-90887.herokuapp.com/call/${q.cID}/`
         qResHandler([])
         qRes2Handler([])
+        let apiURIex1 = ``
+        let apiURIex2 = ``
         
         let queryGrab = async (route, resIndex) =>{
             await fetch(route, {
@@ -52,6 +57,9 @@ export const QueryContextProvider = (props) =>{
                     case 2:
                         qRes2Handler(waitRes.filter( item => item.buyer === q.walletAddress))
                         break
+                    case 3:
+                        qResHandler(true)
+                        break
                     default:
                         qResHandler(waitRes)
                         break
@@ -65,22 +73,24 @@ export const QueryContextProvider = (props) =>{
         switch (q.probID){
             //Sold NFT But Haven't Received ICP
             case 1:
-
-
+                entrepotCtx.setCollectionMethods(q.cID)
                 break
             case 2:
-                            
-
                 break
             case 3:
+                apiURIex1 = `mintOutstanding`
+                await queryGrab(apiURI + apiURIex1, 3)
                 break
             case 4:
                 break
             //Self Diagnosis Option 
             case 0:
-                const apiURIex1 = `transactions`
-                const apiURIex2 = `saleTransactions`
+                apiURIex1 = `transactions`
+                apiURIex2 = `saleTransactions`
                 
+                // Filter if user has provided a wallet address or not.
+                // If they have then display the user transactions and sale transaction data.
+                // IF not then provided full transaction list.
                 if(q.walletAddress !== ''){
                     await queryGrab(apiURI + apiURIex1, 1)
                     await queryGrab(apiURI + apiURIex2, 2)

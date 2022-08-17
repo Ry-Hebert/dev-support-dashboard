@@ -41,7 +41,6 @@ let HelpTool = () => {
             console.log(problemForm.collection)
 
             entrepotCtx.setIsOld()
-            entrepotCtx.setCollectionMethods(problemForm.collection)
 
             const queryParams = {
                 cID: problemForm.collection,
@@ -206,25 +205,59 @@ let HelpTool = () => {
                     problemForm.problem === 1 ?
                         <div>
                             {entrepotCtx.isOld === true ?
-                                <div className='tableDisplay'>
-                                    <p>Ok, We found a potential solution! Lets run "Check Payments" to see if this solves the problem.</p>
-                                    <div className='formItem submitButton'>
-                                        <Button name='checkPayments' variant="contained" onClick={handleChange}>Check Payments</Button>
-                                    </div>
+                                <div className='resOutput'>
+                                    <h3>To push your payment through with this canister you need make sure you are logged into your wallet in Entrepot With the same account that you sold your NFT from. After verifying that you will want to do the following.</h3>
+                                    <ul>
+                                        <li>Refresh the browser</li>
+                                        <li>Click on your wallet icon in the nav bar</li>
+                                        <li>click on the drop down carrot next to your wallet and its address.</li>
+                                        <li>From there you should see a dropdown menu that contains an item labeled "Check Payments"</li>
+                                        <li>Click "Check Payments" and wait for it to finish, then refresh the browser again and the payment should have gone through.</li>
+                                    </ul>
+                                    <h4>Did this help you with your problem?</h4>
                                 </div> :
                             entrepotCtx.isOld === false ?
-                                <div>
-                                    Success: Is New
-                                </div> :
+                                entrepotCtx.cronDisbursements === false ?
+                                    <div className='resOutput'>
+                                        <h3>Please give us a moment while we try something.</h3>
+                                        <div className='cronLoading'><Box sx={{ display: 'flex' }}><CircularProgress /></Box></div>
+                                    </div> :
+                                    <div className='resOutput'>
+                                        <h3>Good News!</h3>
+                                        <p>If you go to your wallet and refresh your browser you should now see your ICP from the sale.</p>
+                                        <h4>Did this help you with your problem?</h4>
+                                    </div> :
                             <div><Box sx={{ display: 'flex' }}><CircularProgress /></Box></div>
                             }
                         </div> :
                     problemForm.problem === 2 ?
                         <div></div> :
                     problemForm.problem === 3 ?
-                        <div></div> :
+                        <div>
+                            {queryCtx.qRes === true ?
+                                <div className='resOutput'>
+                                    <h3>Good News!</h3>
+                                    <p>If you go to your wallet and refresh your browser you should now see your NFT.</p>
+                                    <h4>Did this help you with your problem?</h4>
+                                </div> :
+                                <div className='resOutput'>
+                                    <h3>Please give us a moment while we try something.</h3>
+                                    <div className='cronLoading'><Box sx={{ display: 'flex' }}><CircularProgress /></Box></div>
+                                </div>
+                            }
+                        </div> :
                     problemForm.problem === 4 ?
-                        <div></div> :
+                        <div>
+                            <div className='resOutput'>
+                                <h3>For Stoic:</h3>
+                                <p>To see your NFT in Stoic you have to manually add the canister to the wallet through the Stoic interface. If that and refreshing the browser doesn't work then the project likely has not implemented the necessary methods needed for canister discovery yet.</p>
+                                <h3>For Plug:</h3>
+                                <p>If you cant view your NFT in through Plug then the canister needs to be added to the DAB. The collection creator will need to add the associated canister to DAB for auto-discovery. If you happen to know that it has been added to DAB then try logging out and logging back in, it can tak a min for everything to populate.</p>
+                                <h3>For Entrepot:</h3>
+                                <p>Entrepot also uses DAB to populate information, if the NFT is not showing up there it is possible that the API is simply being a little slow, try refreshing your browser and then give it a moment to populate everything.</p>
+                                <h4>Did this help you with your problem?</h4>
+                            </div>
+                        </div> :
                     problemForm.problem === undefined ?
                         <div></div> :
                     <div><h2>Request Error</h2></div>

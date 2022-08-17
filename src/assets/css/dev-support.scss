@@ -36,7 +36,7 @@
     }
 }
 
-.tableDisplay .resOutput{
+.tableDisplay{
     margin: 0rem .5rem;
     table {
         font-family: arial, sans-serif;
@@ -55,6 +55,23 @@
       }
 }
 
+.resOutput{
+    margin: 0rem 1rem;
+    ul{
+        text-align: start;
+        margin: 2rem 0rem;
+    }
+}
+
+.cronLoading{
+    display: flex;
+    justify-content: center;
+}
+
+.errorFeedback{
+    color: red;
+}
+
 @media only screen and (min-width:34rem) 
 {
     .tableDisplay .resOutput{
@@ -65,5 +82,7 @@
 
 @media only screen and (min-width:60rem) 
 {
-    
+    .resOutput{
+        margin: 0rem 20%;
+    }
 }
