@@ -10,6 +10,7 @@ const QueryContext = createContext({
     qRes: [],
     qRes2: [],
     qType: 0,
+    qStage: 0,
     nftMintNum: '',
     principalID: '',
     walletAddress: '',
@@ -27,6 +28,7 @@ export const QueryContextProvider = (props) =>{
     const [qRes, setQRes] = useState([])
     const [qRes2, setQRes2] = useState([])
     const [qType, setQType] = useState(0)
+    const [qStage, setQStage] = useState(0)
     const [nftMintNum, setNftMintNum] = useState('')
     const [principalID, setPrincipalID] = useState('')
     const [walletAddress, setWalletAddress] = useState('')
@@ -76,6 +78,9 @@ export const QueryContextProvider = (props) =>{
                 entrepotCtx.setCollectionMethods(q.cID)
                 break
             case 2:
+                if(qStage === 0){
+                    setQStage(1)
+                }
                 break
             case 3:
                 apiURIex1 = `mintOutstanding`
@@ -129,6 +134,7 @@ export const QueryContextProvider = (props) =>{
             qRes: qRes,
             qRes2: qRes2,
             qType: qType,
+            qStage: qStage,
             nftMintNum: nftMintNum,
             principalID: principalID,
             walletAddress: walletAddress

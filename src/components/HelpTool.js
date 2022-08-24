@@ -22,6 +22,11 @@ let HelpTool = () => {
         console.log(problemForm)
         if(event.target.name === 'problem'){
             setProblemForm({...problemForm, problem: event.target.value})
+            
+            // Clears entered fields
+            // document.querySelector(`#outlined-basic[name='mintNum']`).value = ''
+            // document.querySelector(`#outlined-basic[name='principalID']`).value = ''
+            // document.querySelector(`#outlined-basic[name='walletAddress']`).value = ''
         }
         if(event.target.name === 'collection'){
             setProblemForm({...problemForm, collection: event.target.value})
@@ -47,7 +52,8 @@ let HelpTool = () => {
                 probID: problemForm.problem,
                 princID: problemForm.principalID,
                 mintNum: problemForm.mintNum,
-                walletAddress: problemForm.walletAddress
+                walletAddress: problemForm.walletAddress,
+                qStage: 0,
             }
 
             queryCtx.setNftMintNum(problemForm.mintNum)
@@ -231,7 +237,20 @@ let HelpTool = () => {
                             }
                         </div> :
                     problemForm.problem === 2 ?
-                        <div></div> :
+                        <div>
+                            {queryCtx.qStage === 1 ? 
+                                <div className='resOutput'>
+                                    <h3>Are you looking for the NFT through Entrepot?</h3>
+                                    <div className='findNFTQ'>
+                                        <Button name='submitQ' variant="contained" onClick={handleChange}>No</Button>
+                                        <Button name='submitQ' variant="contained" onClick={handleChange}>Yes</Button>
+                                    </div>
+                                </div> :
+                                <div className='resOutput'>
+                                
+                                </div>
+                            }
+                        </div> :
                     problemForm.problem === 3 ?
                         <div>
                             {queryCtx.qRes === true ?

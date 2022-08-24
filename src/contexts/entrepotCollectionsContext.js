@@ -64,7 +64,7 @@ export const EntrepotCollectionsContextProvider = (props) =>{
 
     const collectionMethodsHandler = async (canID) =>{
         setLastCanisterID(canID)
-        const uriAddress = `http://tonq-collection-info.herokuapp.com/directoryinfo/${canID}`
+        const uriAddress = `https://tonq-collection-info.herokuapp.com/directoryinfo/${canID}`
         const canisterMethods = await fetch(uriAddress)
         const jsonCM = await canisterMethods.json()
 
