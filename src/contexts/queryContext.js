@@ -4,6 +4,11 @@ import React, {
     createContext,
 } from 'react'
 import { useEntrepotCollectionsContext } from '../contexts/entrepotCollectionsContext'
+import extjs from '../ext/extjs.js'
+// const extjs = require("../ext/extjs.js")
+// const utils = require('../ext/utils')
+
+const extApi = extjs.connect()
 
 const QueryContext = createContext({
     query: 0,
@@ -102,8 +107,15 @@ export const QueryContextProvider = (props) =>{
 
                 }
                 else{
-                    let fetchedData1 = await queryGrab(apiURI + apiURIex1)
-                    console.log(fetchedData1)
+                    // let fetchedData1 = await queryGrab(apiURI + apiURIex1)
+                    // console.log(fetchedData1)
+                    console.log('EXT Canister Test')
+                    console.log(extApi.canister(q.cID))
+
+                    console.log('EXT Transactions Test')
+                    extApi.canister(q.cID).transactions().then(res =>{
+                        console.log(res)
+                    })
                 }
 
                 break
